@@ -24,6 +24,15 @@ or mangling.
     my $issue = $client->get_issue('PRGPRESENTS-12');
     print $issue->{fields}->{priority}->{value}->{name}."\n";
 
+=begin :prelude
+
+=head1 HEADS UP
+
+This module is under development and some of the REST API hasn't been implemented
+yet.
+
+=end :postlude
+
 =cut
 
 has '_client' => (
