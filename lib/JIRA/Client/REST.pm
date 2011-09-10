@@ -31,7 +31,7 @@ or mangling.
 This module is under development and some of the REST API hasn't been implemented
 yet.
 
-=end :postlude
+=end :prelude
 
 =cut
 
