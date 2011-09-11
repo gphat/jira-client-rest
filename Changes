@@ -1,4 +1,5 @@
 {{$NEXT}}
+    * Fix username and password to use the on supplied.
 
 0.02 Sep 11 2011
     * POD improvements
