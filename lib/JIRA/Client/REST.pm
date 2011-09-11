@@ -21,7 +21,7 @@ or mangling.
         password => 'password',
         url => 'http://jira.mycompany.com',
     );
-    my $issue = $client->get_issue('PRGPRESENTS-12');
+    my $issue = $client->get_issue('TICKET-12');
     print $issue->{fields}->{priority}->{value}->{name}."\n";
 
 =begin :prelude
