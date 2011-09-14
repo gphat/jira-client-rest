@@ -1,4 +1,6 @@
 {{$NEXT}}
+
+0.04 Sep 14 2011
     * Really fix username and password to use the one supplied.
 
 0.03 Sep 11 2011
