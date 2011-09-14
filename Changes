@@ -1,4 +1,5 @@
 {{$NEXT}}
+    * Really fix username and password to use the one supplied.
 
 0.03 Sep 11 2011
     * Fix username and password to use the on supplied.
