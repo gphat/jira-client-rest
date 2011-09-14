@@ -130,7 +130,7 @@ has '_client' => (
             trace => $self->debug,
         );
         $client->enable('Format::JSON');
-        $client->enable('Auth::Basic', username => 'cory.watson', password => '#.n883%P6VzEZg');
+        $client->enable('Auth::Basic', username => $self->username, password => $self->password);
         return $client;
     }
 );
