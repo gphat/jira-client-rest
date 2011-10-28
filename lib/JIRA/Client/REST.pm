@@ -37,6 +37,7 @@ yet.
 
 has '_client' => (
     is => 'rw',
+    lazy => 1,
     default => sub {
         my $self = shift;
 
@@ -138,6 +139,7 @@ has '_client' => (
 has 'debug' => (
     is => 'rw',
     isa => 'Bool',
+    default => 0,
 );
 
 =attr password
@@ -175,6 +177,12 @@ has 'username' => (
     isa => 'Str',
     required => 1
 );
+
+sub BUILD {
+    my ($self) = @_;
+
+    $self->_client;
+}
 
 =method get_issue($id, $expand)
 
