@@ -1,4 +1,6 @@
 {{$NEXT}}
+
+0.05 Oct 29 2011
     * Fix instantiation when debug isn't set (Matthew Horsfall)
 
 0.04 Sep 14 2011
