@@ -178,12 +178,6 @@ has 'username' => (
     required => 1
 );
 
-sub BUILD {
-    my ($self) = @_;
-
-    $self->_client;
-}
-
 =method get_issue($id, $expand)
 
 Get the issue with the supplied id.  Returns a HashRef of data.
