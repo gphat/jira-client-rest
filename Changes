@@ -1,4 +1,5 @@
 {{$NEXT}}
+    * Fix instantiation when debug isn't set (Matthew Horsfall)
 
 0.04 Sep 14 2011
     * Really fix username and password to use the one supplied.
