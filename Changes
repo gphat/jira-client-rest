@@ -1,4 +1,6 @@
 {{$NEXT}}
+
+0.06 Nov 4 2011
     * Add get_project, get_project_versions and get_version
 
 0.05 Oct 29 2011
