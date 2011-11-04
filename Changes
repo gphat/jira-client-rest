@@ -1,4 +1,5 @@
 {{$NEXT}}
+    * Add get_project, get_project_versions and get_version
 
 0.05 Oct 29 2011
     * Fix instantiation when debug isn't set (Matthew Horsfall)

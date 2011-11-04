@@ -91,6 +91,30 @@ has '_client' => (
                         "method": "GET",
                         "authentication": true
                     },
+                    "get_project": {
+                        "path": "/rest/api/latest/project/:key",
+                        "required_params": [
+                            "key"
+                        ],
+                        "method": "GET",
+                        "authentication": true
+                    },
+                    "get_project_versions": {
+                        "path": "/rest/api/latest/project/:key/versions",
+                        "required_params": [
+                            "key"
+                        ],
+                        "method": "GET",
+                        "authentication": true
+                    },
+                    "get_version": {
+                        "path": "/rest/api/latest/version/:id",
+                        "required_params": [
+                            "id"
+                        ],
+                        "method": "GET",
+                        "authentication": true
+                    },
                     "unvote_for_issue": {
                         "path": "/rest/api/latest/issue/:id/votes",
                         "required_params": [
@@ -224,6 +248,42 @@ sub get_issue_watchers {
     my ($self, $id, $expand) = @_;
 
     return $self->_client->get_issue_watchers(id => $id, expand => $expand);
+}
+
+=method get_project($key)
+
+Get the project for the specifed key.
+
+=cut
+
+sub get_project {
+    my ($self, $key) = @_;
+    
+    return $self->_client->get_project(key => $key);
+}
+
+=method get_project_versions($key)
+
+Get the versions for the project with the specified key.
+
+=cut
+
+sub get_project_versions {
+    my ($self, $key) = @_;
+    
+    return $self->_client->get_project_versions(key => $key);
+}
+
+=method get_version($id)
+
+Get the version with the specified id.
+
+=cut
+
+sub get_version {
+    my ($self, $id) = @_;
+    
+    return $self->_client->get_version(id => $id);
 }
 
 =method unvote_for_issue($id)
