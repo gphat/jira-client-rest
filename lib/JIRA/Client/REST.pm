@@ -120,6 +120,14 @@ has '_client' => (
                         "method": "GET",
                         "authentication": true
                     },
+                    "get_filter": {
+                        "path": "/rest/api/latest/filter/:id",
+                        "required_params": [
+                            "id"
+                        ],
+                        "method": "GET",
+                        "authentication": true
+                    },
                     "unvote_for_issue": {
                         "path": "/rest/api/latest/issue/:id/votes",
                         "required_params": [
@@ -301,6 +309,18 @@ sub get_version {
     my ($self, $id) = @_;
     
     return $self->_client->get_version(id => $id);
+}
+
+=method get_filter($id)
+
+Gets filter metadata, use the jql field to perform a search to get issues
+
+=cut
+
+sub get_filter {
+    my ($self, $id) = @_;
+
+    return $self->_client->get_filter(id => $id);
 }
 
 =method unvote_for_issue($id)
