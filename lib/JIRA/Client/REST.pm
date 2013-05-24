@@ -99,6 +99,11 @@ has '_client' => (
                         "method": "GET",
                         "authentication": true
                     },
+                    "get_projects": {
+                        "path": "/rest/api/latest/project",
+                        "method": "GET",
+                        "authentication": true
+                    },
                     "get_project_versions": {
                         "path": "/rest/api/latest/project/:key/versions",
                         "required_params": [
@@ -260,6 +265,18 @@ sub get_project {
     my ($self, $key) = @_;
     
     return $self->_client->get_project(key => $key);
+}
+
+=method get_projects()
+
+Gets all the projects
+
+=cut
+
+sub get_projects {
+    my ($self) = @_;
+    
+    return $self->_client->get_projects();
 }
 
 =method get_project_versions($key)
