@@ -128,6 +128,17 @@ has '_client' => (
                         "method": "GET",
                         "authentication": true
                     },
+                    "search": {
+                        "path": "/rest/api/latest/search",
+                        "required_params": [
+                            "jql"
+                        ],
+                        "optional_params": [
+                            "startAt", "maxResults", "fields", "expand"
+                        ],
+                        "method": "GET",
+                        "authentication": true
+                    },
                     "unvote_for_issue": {
                         "path": "/rest/api/latest/issue/:id/votes",
                         "required_params": [
@@ -321,6 +332,25 @@ sub get_filter {
     my ($self, $id) = @_;
 
     return $self->_client->get_filter(id => $id);
+}
+
+=method search($jql, $startAt, $maxResults, $fields $expand)
+
+Searches for issues using JQL.
+
+=cut
+
+sub search {
+    my ($self, $jql, $startAt, $maxResults, $fields, $expand) = @_;
+
+	my @param = (jql => $jql);
+
+	push @param, (startAt=>$startAt) if $startAt;
+	push @param, (maxResults=>$maxResults) if $maxResults;
+	push @param, (fields=>$fields) if $fields;
+	push @param, (expand=>$expand) if $expand;
+	
+	return $self->_client->search(@param);
 }
 
 =method unvote_for_issue($id)
