@@ -139,6 +139,15 @@ has '_client' => (
                         "method": "GET",
                         "authentication": true
                     },
+                    "add_comment": {
+                        "path": "/rest/api/latest/issue/:id/comment",
+                        "payload_is_required": true,
+                        "optional_params": [
+                            "expand"
+                        ],
+                        "method": "POST",
+                        "authentication": true
+                    },
                     "unvote_for_issue": {
                         "path": "/rest/api/latest/issue/:id/votes",
                         "required_params": [
@@ -351,6 +360,21 @@ sub search {
 	push @param, (expand=>$expand) if $expand;
 	
 	return $self->_client->search(@param);
+}
+
+=method add_comment($id, $comment, $expand)
+
+Adds a comment to an issue
+
+=cut
+
+sub add_comment {
+    my ($self, $id, $comment, $expand) = @_;
+
+	my @param = (id => $id, spore_payload=>{body=>$comment});
+	push @param, (expand=>$expand) if $expand;
+
+	return $self->_client->add_comment(@param);
 }
 
 =method unvote_for_issue($id)
