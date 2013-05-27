@@ -99,6 +99,11 @@ has '_client' => (
                         "method": "GET",
                         "authentication": true
                     },
+                    "get_projects": {
+                        "path": "/rest/api/latest/project",
+                        "method": "GET",
+                        "authentication": true
+                    },
                     "get_project_versions": {
                         "path": "/rest/api/latest/project/:key/versions",
                         "required_params": [
@@ -113,6 +118,34 @@ has '_client' => (
                             "id"
                         ],
                         "method": "GET",
+                        "authentication": true
+                    },
+                    "get_filter": {
+                        "path": "/rest/api/latest/filter/:id",
+                        "required_params": [
+                            "id"
+                        ],
+                        "method": "GET",
+                        "authentication": true
+                    },
+                    "search": {
+                        "path": "/rest/api/latest/search",
+                        "required_params": [
+                            "jql"
+                        ],
+                        "optional_params": [
+                            "startAt", "maxResults", "fields", "expand"
+                        ],
+                        "method": "GET",
+                        "authentication": true
+                    },
+                    "add_comment": {
+                        "path": "/rest/api/latest/issue/:id/comment",
+                        "payload_is_required": true,
+                        "optional_params": [
+                            "expand"
+                        ],
+                        "method": "POST",
                         "authentication": true
                     },
                     "unvote_for_issue": {
@@ -262,6 +295,18 @@ sub get_project {
     return $self->_client->get_project(key => $key);
 }
 
+=method get_projects()
+
+Gets all the projects
+
+=cut
+
+sub get_projects {
+    my ($self) = @_;
+    
+    return $self->_client->get_projects();
+}
+
 =method get_project_versions($key)
 
 Get the versions for the project with the specified key.
@@ -284,6 +329,52 @@ sub get_version {
     my ($self, $id) = @_;
     
     return $self->_client->get_version(id => $id);
+}
+
+=method get_filter($id)
+
+Gets filter metadata, use the jql field to perform a search to get issues
+
+=cut
+
+sub get_filter {
+    my ($self, $id) = @_;
+
+    return $self->_client->get_filter(id => $id);
+}
+
+=method search($jql, $startAt, $maxResults, $fields $expand)
+
+Searches for issues using JQL.
+
+=cut
+
+sub search {
+    my ($self, $jql, $startAt, $maxResults, $fields, $expand) = @_;
+
+	my @param = (jql => $jql);
+
+	push @param, (startAt=>$startAt) if $startAt;
+	push @param, (maxResults=>$maxResults) if $maxResults;
+	push @param, (fields=>$fields) if $fields;
+	push @param, (expand=>$expand) if $expand;
+	
+	return $self->_client->search(@param);
+}
+
+=method add_comment($id, $comment, $expand)
+
+Adds a comment to an issue
+
+=cut
+
+sub add_comment {
+    my ($self, $id, $comment, $expand) = @_;
+
+	my @param = (id => $id, spore_payload=>{body=>$comment});
+	push @param, (expand=>$expand) if $expand;
+
+	return $self->_client->add_comment(@param);
 }
 
 =method unvote_for_issue($id)
