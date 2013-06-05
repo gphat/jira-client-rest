@@ -13,6 +13,6 @@ my $client = JIRA::Client::REST->new(
     debug => 1
 );
 my $ver = $client->get_version("10001");
-cmp_ok($ver->body->{name}, 'eq', '0.04', 'version name');
+cmp_ok($ver->{name}, 'eq', '0.04', 'version name');
 
 done_testing;

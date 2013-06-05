@@ -14,9 +14,9 @@ my $client = JIRA::Client::REST->new(
 );
 my $proj = $client->get_project("TESTING");
 
-cmp_ok($proj->body->{name}, 'eq', 'TESTING', 'project name');
+cmp_ok($proj->{name}, 'eq', 'TESTING', 'project name');
 
 my $vers = $client->get_project_versions("TESTING");
-ok(scalar(@{ $vers->body }) > 0, 'got versions');
+ok(scalar(@{ $vers }) > 0, 'got versions');
 
 done_testing;
